@@ -2579,6 +2579,7 @@ input[type=search] {
     width: 40px;
     outline: 0;
     position: absolute;
+    z-index: 2;
     right: 0;
     top: 50%;
     -webkit-transform: translate(0, -50%);
