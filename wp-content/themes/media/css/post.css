@@ -1,0 +1,266 @@
+.post__image {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.post__title {
+    margin-bottom: 25px;
+}
+
+.post__date {
+    color: #a4abab;
+    margin-bottom: 30px;
+}
+
+.post__text {
+    margin-bottom: 40px;
+}
+
+.post__bottom {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(37, 37, 37, 0.1);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.post-tags__tag {
+    border: 1px solid #e8e8e8;
+    border-radius: 3px;
+    white-space: nowrap;
+    padding: 2px 40px;
+    background: transparent;
+    margin-right: 10px;
+}
+
+.post-tags__text {
+    color: #999;
+    font-size: 0.6875em;
+    line-height: 1;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.post__comments {
+    margin: 50px 0 100px;
+}
+
+.comments__title {
+    color: #999;
+    margin-bottom: 35px;
+    font-weight: 400;
+}
+
+.comment:before,
+.comment:after {
+    content: " ";
+    display: table;
+}
+
+.comment:after {
+    clear: both;
+}
+
+.comment__avatar {
+    width: 100px;
+    float: left;
+    padding-right: 30px;
+}
+
+.comment__image {
+    width: 100%;
+}
+
+.comment__content {
+    width: calc(100% - 100px);
+    float: left;
+}
+
+.comment__header {
+    margin-bottom: 30px;
+}
+
+.comment__header:before,
+.comment__header:after {
+    content: " ";
+    display: table;
+}
+
+.comment__header:after {
+    clear: both;
+}
+
+.comment__info {
+    width: 84%;
+    float: left;
+}
+
+.comment__date {
+    color: #a4abab;
+    font-size: 0.875em;
+    line-height: 1;
+    margin-bottom: 15px;
+}
+
+.comment__name {
+    font-size: 1.125em;
+    line-height: 1;
+}
+
+.comment__button {
+    width: 16%;
+    float: right;
+}
+
+.comment__button:before,
+.comment__button:after {
+    content: " ";
+    display: table;
+}
+
+.comment__button:after {
+    clear: both;
+}
+
+.comment__button .button {
+    border: 1px solid #242d2e;
+    border-radius: 2px;
+    background: transparent;
+    transition: all 0.3s;
+    float: right;
+}
+
+.comment__button .button.button_hovered {
+    background-color: #40c4ff;
+    border-color: #40c4ff;
+}
+
+.comment__button .button.button_hovered .button__text {
+    color: #fff;
+}
+
+.comment__button .button .button__text {
+    color: #222626;
+    font-size: 0.8125em;
+    font-weight: 400;
+    line-height: 1;
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+.comment__description {
+    margin-bottom: 30px;
+}
+
+.comments__form {
+    margin-top: 30px;
+}
+
+.comments-form__title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 35px;
+}
+
+.input {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+.comments-form__input,
+.comments-form__textarea {
+    display: block;
+    position: relative;
+    padding-bottom: 1px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.comments-form__input .textarea__control,
+.comments-form__textarea .textarea__control,
+.comments-form__input .input__control,
+.comments-form__textarea .input__control {
+    display: block;
+    width: 100%;
+    background: #fff;
+    border: none;
+    outline: 0;
+    position: relative;
+    z-index: 4;
+    color: #424242;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    font-weight: 400;
+    line-height: 1;
+    padding-bottom: 20px;
+}
+
+.comments-form__input:before,
+.comments-form__textarea:before,
+.comments-form__input:after,
+.comments-form__textarea:after {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.1);
+    transition: right 0.3s;
+}
+
+.comments-form__input:before,
+.comments-form__textarea:before {
+    background: #000;
+    right: 100%;
+    z-index: 2;
+}
+
+.comments-form__input.input_focused:before,
+.comments-form__textarea.input_focused:before {
+    right: 0;
+}
+
+.comments-form__textarea .textarea__control {
+    resize: none;
+    height: 50px;
+}
+
+.textarea {
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+.comments-form__file-label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: underline;
+    display: block;
+    margin: 0 0 70px;
+    cursor: pointer;
+}
+
+.comments-form__file {
+    display: none !important;
+}
+
+.comments-form__button {
+    border: none;
+    background-color: #424242;
+    border-radius: 2px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    padding: 15px 40px;
+}
