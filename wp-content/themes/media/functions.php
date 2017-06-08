@@ -3,7 +3,7 @@ function enqueue_styles()
 {
     wp_enqueue_style('whitesquare-style', get_stylesheet_uri());
     if (is_single())
-        wp_enqueue_style('index', get_template_directory_uri().'/css/post.css');
+        wp_enqueue_style('post', get_template_directory_uri().'/css/post.css');
 
 //    wp_enqueue_style('cbk', 'https://cdn.envybox.io/widget/cbk.css');
 //    if (is_single()) {
@@ -321,3 +321,30 @@ class description_walker extends Walker_Nav_Menu
         $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
     }
 }
+
+function get_populars($args = array())
+{
+    global $wpdb;
+
+    if( ! empty($wpdb->error) ) wp_die( $wpdb->error );
+    if(!isset($args['quantity']))
+        $args['quantity'] = 7;
+
+    if(!isset($args['interval']))
+        $args['interval'] = 90;
+
+    $sql = "SELECT * FROM " . $wpdb->posts . " WHERE post_type = 'post' AND post_status = 'publish' AND post_date > '" . date('Y-m-d', strtotime("-" . (int)$args['interval'] . " days")) . "' ORDER BY comment_count DESC LIMIT 0 , " . (int)$args['quantity'];
+    $result = $wpdb->get_results($sql);
+
+    return $result;
+}
+
+
+add_filter('navigation_markup_template', 'my_navigation_template', 10, 2 );
+function my_navigation_template($template, $class) {
+    return '
+	<nav class="main__pagination navigation %1$s" role="navigation">%3$s</nav>    
+	';
+}
+
+//add_action('navigation_markup_template', 'sanitize_pagination');
