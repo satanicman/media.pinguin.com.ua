@@ -57,7 +57,8 @@
         </div>
         <div class="col-xs-12">
             <div class="row">
-                <div class="footer-col footer__col col-lg-4"><img class="image footer__logo img-responsive" src="<?php echo get_template_directory_uri(); ?>/img/0X9Bl8HYeoXBOPoY5uhNFHQLy9M.png" alt="footer logo" title="footer logo">
+                <div class="footer-col footer__col col-lg-4">
+                    <a href="<?php echo get_site_url(); ?>" title="<?php echo get_bloginfo('name'); ?>" class="footer__logo"><img class="image footer__logo-image img-responsive" src="<?php echo get_site_url(); ?>/wp-content/uploads/2017/06/0X9Bl8HYeoXBOPoY5uhNFHQLy9M.png" alt="footer logo" title="<?php echo get_bloginfo('name'); ?>"></a>
                     <p class="text footer__slogan">При использовании материалов сайта обязательным условием является наличие гиперссылки в пределах первого абзаца на страницу расположения исходной статьи с указанием бренда издания Buying press Материалы с пометками "Новости компаний"
                         и PR публикуются на правах рекламы.</p>
                 </div>
