@@ -27,8 +27,8 @@
         </div>
         <div class="logo logo_top">
             <a href="<?php echo get_site_url(); ?>" class="logo__link">
-                <span class="logo__name">Buying Press</span>
-                <span class="logo__slogan">Профессионально о медиабизнессе Украины</span>
+                <span class="logo__name"><?php echo get_bloginfo('name'); ?></span>
+                <span class="logo__slogan"><?php echo get_bloginfo('description'); ?></span>
             </a>
         </div>
     </div>
