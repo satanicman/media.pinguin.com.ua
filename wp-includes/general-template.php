@@ -3309,25 +3309,29 @@ function paginate_links( $args = '' ) {
 	$page_links = array();
 	$dots = false;
 
-	if ( $args['prev_next'] && $current && 1 < $current ) :
-		$link = str_replace( '%_%', 2 == $current ? '' : $args['format'], $args['base'] );
-		$link = str_replace( '%#%', $current - 1, $link );
-		if ( $add_args )
-			$link = add_query_arg( $add_args, $link );
-		$link .= $args['add_fragment'];
+	if ( $args['prev_next'] && $current) :
+        if(1 < $current) {
+            $link = str_replace('%_%', 2 == $current ? '' : $args['format'], $args['base']);
+            $link = str_replace('%#%', $current - 1, $link);
+            if ($add_args)
+                $link = add_query_arg($add_args, $link);
+            $link .= $args['add_fragment'];
 
-		/**
-		 * Filters the paginated links for the given archive pages.
-		 *
-		 * @since 3.0.0
-		 *
-		 * @param string $link The paginated link URL.
-		 */
-		$page_links[] = '<a class="prev page-numbers" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '">' . $args['prev_text'] . '</a>';
+            /**
+             * Filters the paginated links for the given archive pages.
+             *
+             * @since 3.0.0
+             *
+             * @param string $link The paginated link URL.
+             */
+            $page_links[] = '<a class="prev page-numbers pagination__link" href="' . esc_url(apply_filters('paginate_links', $link)) . '"><i class="pagination__icon fa fa_icon_angle-left"></i>' . $args['prev_text'] . '</a>';
+        } else {
+            $page_links[] = '<span class="prev page-numbers pagination__elem"><i class="pagination__icon fa fa_icon_angle-left"></i>' . $args['prev_text'] . '</span>';
+        }
 	endif;
 	for ( $n = 1; $n <= $total; $n++ ) :
 		if ( $n == $current ) :
-			$page_links[] = "<span class='page-numbers current'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . "</span>";
+			$page_links[] = "<span class='page-numbers current pagination__link pagination__link_active'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . "</span>";
 			$dots = true;
 		else :
 			if ( $args['show_all'] || ( $n <= $end_size || ( $current && $n >= $current - $mid_size && $n <= $current + $mid_size ) || $n > $total - $end_size ) ) :
@@ -3338,31 +3342,35 @@ function paginate_links( $args = '' ) {
 				$link .= $args['add_fragment'];
 
 				/** This filter is documented in wp-includes/general-template.php */
-				$page_links[] = "<a class='page-numbers' href='" . esc_url( apply_filters( 'paginate_links', $link ) ) . "'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . "</a>";
+				$page_links[] = "<a class='page-numbers pagination__link' href='" . esc_url( apply_filters( 'paginate_links', $link ) ) . "'>" . $args['before_page_number'] . number_format_i18n( $n ) . $args['after_page_number'] . "</a>";
 				$dots = true;
 			elseif ( $dots && ! $args['show_all'] ) :
-				$page_links[] = '<span class="page-numbers dots">' . __( '&hellip;' ) . '</span>';
+				$page_links[] = '<span class="page-numbers dots pagination__elem">' . __( '&hellip;' ) . '</span>';
 				$dots = false;
 			endif;
 		endif;
 	endfor;
-	if ( $args['prev_next'] && $current && $current < $total ) :
-		$link = str_replace( '%_%', $args['format'], $args['base'] );
-		$link = str_replace( '%#%', $current + 1, $link );
-		if ( $add_args )
-			$link = add_query_arg( $add_args, $link );
-		$link .= $args['add_fragment'];
+	if ( $args['prev_next'] && $current) :
+       if($current < $total) {
+           $link = str_replace('%_%', $args['format'], $args['base']);
+           $link = str_replace('%#%', $current + 1, $link);
+           if ($add_args)
+               $link = add_query_arg($add_args, $link);
+           $link .= $args['add_fragment'];
 
-		/** This filter is documented in wp-includes/general-template.php */
-		$page_links[] = '<a class="next page-numbers" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '">' . $args['next_text'] . '</a>';
+           /** This filter is documented in wp-includes/general-template.php */
+           $page_links[] = '<a class="next page-numbers pagination__link" href="' . esc_url(apply_filters('paginate_links', $link)) . '">' . $args['next_text'] . '<i class="pagination__icon fa fa_icon_angle-right"></i></a>';
+       } else {
+           $page_links[] = '<span class="next page-numbers pagination__elem">' . $args['next_text'] . '<i class="pagination__icon fa fa_icon_angle-right"></i></span>';
+       }
 	endif;
 	switch ( $args['type'] ) {
 		case 'array' :
 			return $page_links;
 
 		case 'list' :
-			$r .= "<ul class='page-numbers'>\n\t<li>";
-			$r .= join("</li>\n\t<li>", $page_links);
+			$r .= "<ul class='page-numbers pagination__list'>\n\t<li class='pagination__item'>";
+			$r .= join("</li>\n\t<li class='pagination__item'>", $page_links);
 			$r .= "</li>\n</ul>\n";
 			break;
 
