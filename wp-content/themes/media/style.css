@@ -3014,20 +3014,32 @@ input[type=search] {
     }
 }
 
+.banner {
+    text-align: center;
+}
+
+.banner a {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.banner img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto
+}
+
 .banner_right {
-    margin-bottom: 30px;
     text-align: center
 }
 
-.banner_right .banner__link {
+.banner_right a {
     display: inline-block;
     vertical-align: middle;
     border: 1px solid rgba(34, 38, 38, .1);
-    padding: 25px
-}
-
-.banner_right .image {
-    margin: 0 auto
+    padding: 25px;
+    margin-bottom: 30px;
 }
 
 .footer {

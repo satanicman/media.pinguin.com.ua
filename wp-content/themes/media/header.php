@@ -22,8 +22,10 @@
 <header class="header">
     <div class="container">
         <div class="banner banner_top">
-            <a class="link link__control banner__link" role="link" href="#" title="top banner"><img class="image banner__image" src="<?php echo get_template_directory_uri(); ?>/img/9AxGihQ_YNfq5UuVL1GUBVxej84.jpg" alt="banner top">
-            </a>
+            <?php
+            if ( function_exists('dynamic_sidebar') )
+                dynamic_sidebar('b1');
+            ?>
         </div>
         <div class="logo logo_top">
             <a href="<?php echo get_site_url(); ?>" class="logo__link">

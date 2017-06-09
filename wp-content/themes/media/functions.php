@@ -2,40 +2,9 @@
 function enqueue_styles()
 {
     wp_enqueue_style('whitesquare-style', get_stylesheet_uri());
-    if (is_single())
-        wp_enqueue_style('post', get_template_directory_uri().'/css/post.css');
-
-//    wp_enqueue_style('cbk', 'https://cdn.envybox.io/widget/cbk.css');
-//    if (is_single()) {
-//        wp_enqueue_style('productioncss', get_template_directory_uri() . '/css/information.css');
-//    } elseif (is_page()) {
-//        switch (get_the_ID()) {
-//            case 17 :
-//                wp_enqueue_style('productioncss', get_template_directory_uri() . '/css/contacts.css');
-//                break;
-//            case 101 :
-//                wp_enqueue_style('productioncss', get_template_directory_uri() . '/css/about.css');
-//                break;
-//            case 141 :
-//                wp_enqueue_style('productioncss', get_template_directory_uri() . '/css/form.css');
-//                break;
-//            default:
-//                wp_enqueue_style('productioncss', get_template_directory_uri() . '/css/index.css');
-//                break;
-//        }
-//    } elseif (is_category()) {
-//        if(is_category(3))
-//            wp_enqueue_style('productioncss', get_template_directory_uri() . '/css/portfolio.css');
-//        elseif(is_category(4))
-//            wp_enqueue_style('productioncss', get_template_directory_uri() . '/css/news.css');
-//        else
-//            wp_enqueue_style('productioncss', get_template_directory_uri() . '/css/news.css');
-//
-//    } elseif(is_search()) {
-//        wp_enqueue_style('productioncss', get_template_directory_uri() . '/css/news.css');
-//    } else {
-//        wp_enqueue_style('productioncss', get_template_directory_uri() . '/css/index.css');
-//    }
+    if (is_single()) {
+        wp_enqueue_style('post', get_template_directory_uri() . '/css/post.css');
+    }
 }
 
 if (function_exists('enqueue_styles')) {
@@ -44,16 +13,9 @@ if (function_exists('enqueue_styles')) {
 
 function enqueue_scripts()
 {
-//    wp_enqueue_script('jquery', get_template_directory_uri() . '/bower_components/jquery/dist/jquery.js', array(), '', true);
     wp_enqueue_script('productionjs', get_template_directory_uri() . '/js/global.js', array(), '', true);
-//    wp_enqueue_script('callme', get_template_directory_uri() . '/callme/js/callme.min.js', array(), '', true);
-//    wp_enqueue_script('cbk', 'https://cdn.envybox.io/widget/cbk.js?wcb_code=798d4afea6f654eeeda090042b924f72', array(), '', true);
-    if (is_page()) {
-        switch (get_the_ID()) {
-            case 141 :
-                wp_enqueue_script('formJs', get_template_directory_uri() . '/js/form.js', array(), '', true);
-                break;
-        }
+    if (is_single()) {
+        wp_enqueue_script('share42', get_template_directory_uri() . '/js/share42/share42.js', array('jquery'), '', true);
     }
 }
 
@@ -67,7 +29,6 @@ function register_my_menus()
     register_nav_menus(
         array(
             'main_menu' => 'main_menu',
-            'about_menu' => 'about_menu',
             'footer_menu' => 'footer_menu'
         )
     );
@@ -77,6 +38,41 @@ function register_my_menus()
 if (function_exists('register_sidebar')) {
     register_sidebar(array(
         'name' => 'footer_subscribe',
+        'before_widget' => '',
+        'after_widget' => '',
+        'before_title' => '',
+        'after_title' => '',
+    ));
+    register_sidebar(array(
+        'name' => 'socials',
+        'before_widget' => '',
+        'after_widget' => '',
+        'before_title' => '',
+        'after_title' => '',
+    ));
+    register_sidebar(array(
+        'name' => 'b1',
+        'before_widget' => '',
+        'after_widget' => '',
+        'before_title' => '',
+        'after_title' => '',
+    ));
+    register_sidebar(array(
+        'name' => 'b2',
+        'before_widget' => '',
+        'after_widget' => '',
+        'before_title' => '',
+        'after_title' => '',
+    ));
+    register_sidebar(array(
+        'name' => 'b3',
+        'before_widget' => '',
+        'after_widget' => '',
+        'before_title' => '',
+        'after_title' => '',
+    ));
+    register_sidebar(array(
+        'name' => 'b4',
         'before_widget' => '',
         'after_widget' => '',
         'before_title' => '',

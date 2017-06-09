@@ -22,30 +22,33 @@
                         ?>
                     </p>
                     <div class="share">
-                        <ul class="share__list">
-                            <li class="share__item"><a
-                                        class="link link__control share__link fa fa_icon_facebook i-bem"
-                                        data-bem='{"link":{}}' role="link" href="#" title="facebook"></a></li>
-                            <li class="share__item"><a
-                                        class="link link__control share__link fa fa_icon_twitter i-bem"
-                                        data-bem='{"link":{}}' role="link" href="#" title="twitter"></a></li>
-                            <li class="share__item"><a
-                                        class="link link__control share__link fa fa_icon_pinterest i-bem"
-                                        data-bem='{"link":{}}' role="link" href="#" title="pinterest"></a></li>
-                            <li class="share__item"><a class="link link__control share__link fa fa_icon_rss i-bem"
-                                                       data-bem='{"link":{}}' role="link" href="#" title="rss"></a>
-                            </li>
-                            <li class="share__item"><a class="link link__control share__link fa fa_icon_heart i-bem"
-                                                       data-bem='{"link":{}}' role="link" href="#" title="like"></a>
-                            </li>
-                        </ul>
+                        <div class="share42init"></div>
+<!--                        <ul class="share__list">-->
+<!--                            <li class="share__item"><a-->
+<!--                                        class="link link__control share__link fa fa_icon_facebook i-bem"-->
+<!--                                        data-bem='{"link":{}}' role="link" href="#" title="facebook"></a></li>-->
+<!--                            <li class="share__item"><a-->
+<!--                                        class="link link__control share__link fa fa_icon_twitter i-bem"-->
+<!--                                        data-bem='{"link":{}}' role="link" href="#" title="twitter"></a></li>-->
+<!--                            <li class="share__item"><a-->
+<!--                                        class="link link__control share__link fa fa_icon_pinterest i-bem"-->
+<!--                                        data-bem='{"link":{}}' role="link" href="#" title="pinterest"></a></li>-->
+<!--                            <li class="share__item"><a class="link link__control share__link fa fa_icon_rss i-bem"-->
+<!--                                                       data-bem='{"link":{}}' role="link" href="#" title="rss"></a>-->
+<!--                            </li>-->
+<!--                            <li class="share__item"><a class="link link__control share__link fa fa_icon_heart i-bem"-->
+<!--                                                       data-bem='{"link":{}}' role="link" href="#" title="like"></a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
                     </div>
                 </div>
                 <?php comments_template(); ?>
             </div>
             <div class="banner banner_center">
-                <a class="link link__control banner__link i-bem" data-bem='{"link":{}}' role="link" href="#" title="center banner"><img class="image banner__image" src="<?php echo get_template_directory_uri(); ?>/img/9AxGihQ_YNfq5UuVL1GUBVxej84.jpg" alt="center banner" title="center banner">
-                </a>
+                <?php
+                if ( function_exists('dynamic_sidebar') )
+                    dynamic_sidebar('b4');
+                ?>
             </div>
         </div>
 

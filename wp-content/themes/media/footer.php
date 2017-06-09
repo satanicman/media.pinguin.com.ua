@@ -3,57 +3,10 @@
 <footer class="footer">
     <div class="footer__container container">
         <div class="socials footer__socials col-lg-12">
-            <ul class="socials__list">
-                <li class="socials__item">
-                    <a class="link link__control socials__link i-bem" data-bem='{"link":{}}' role="link" href="#" title="Facebook">
-                        <span class="link__icon"><i class="fa fa_icon_facebook socials__icon"></i>
-                        </span>
-                        <p class="text socials__text">Facebook</p>
-                    </a>
-                </li>
-                <li class="socials__item">
-                    <a class="link link__control socials__link i-bem" data-bem='{"link":{}}' role="link" href="#" title="Twitter">
-                        <span class="link__icon"><i class="fa fa_icon_twitter socials__icon"></i>
-                        </span>
-                        <p class="text socials__text">Twitter</p>
-                    </a>
-                </li>
-                <li class="socials__item">
-                    <a class="link link__control socials__link i-bem" data-bem='{"link":{}}' role="link" href="#" title="Google +">
-                        <span class="link__icon"><i class="fa fa_icon_google-plus socials__icon"></i>
-                        </span>
-                        <p class="text socials__text">Google +</p>
-                    </a>
-                </li>
-                <li class="socials__item">
-                    <a class="link link__control socials__link i-bem" data-bem='{"link":{}}' role="link" href="#" title="Linkedin">
-                        <span class="link__icon"><i class="fa fa_icon_linkedin socials__icon"></i>
-                        </span>
-                        <p class="text socials__text">Linkedin</p>
-                    </a>
-                </li>
-                <li class="socials__item">
-                    <a class="link link__control socials__link i-bem" data-bem='{"link":{}}' role="link" href="#" title="Instagram">
-                        <span class="link__icon"><i class="fa fa_icon_instagram socials__icon"></i>
-                        </span>
-                        <p class="text socials__text">Instagram</p>
-                    </a>
-                </li>
-                <li class="socials__item">
-                    <a class="link link__control socials__link i-bem" data-bem='{"link":{}}' role="link" href="#" title="Vimeo">
-                        <span class="link__icon"><i class="fa fa_icon_vimeo socials__icon"></i>
-                        </span>
-                        <p class="text socials__text">Vimeo</p>
-                    </a>
-                </li>
-                <li class="socials__item">
-                    <a class="link link__control socials__link i-bem" data-bem='{"link":{}}' role="link" href="#" title="Youtube">
-                        <span class="link__icon"><i class="fa fa_icon_youtube-play socials__icon"></i>
-                        </span>
-                        <p class="text socials__text">Youtube</p>
-                    </a>
-                </li>
-            </ul>
+            <?php
+            if ( function_exists('dynamic_sidebar') )
+                dynamic_sidebar('socials');
+            ?>
         </div>
         <div class="col-xs-12">
             <div class="row">
