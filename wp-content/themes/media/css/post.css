@@ -145,13 +145,18 @@
     color: #fff;
 }
 
-.comment__button .button .button__text {
+.comment__button .button {
+    text-decoration: none;
+}
+.comment__button .button__text {
     color: #222626;
     font-size: 0.8125em;
     font-weight: 400;
     line-height: 1;
     text-transform: uppercase;
-    padding: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 4px 16px;
 }
 
 .comment__description {

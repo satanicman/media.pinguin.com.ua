@@ -289,36 +289,117 @@ function breadcrumbs()
 
 class description_walker extends Walker_Nav_Menu
 {
-	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 )
+    public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
     {
         global $wp_query;
-        $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+        $indent = ($depth) ? str_repeat("\t", $depth) : '';
 
         $class_names = $value = '';
 
-        $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+        $classes = empty($item->classes) ? array() : (array)$item->classes;
 
-        $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
+        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item));
         $class_names .= !empty($args->item_class) ? ' ' . $args->item_class : '';
-        $class_names = ' class="'. esc_attr( $class_names ) . '"';
+        $class_names = ' class="' . esc_attr($class_names) . '"';
 
-        $output .= $indent . '<li id="menu-item-'. $item->ID . '"' . $value . $class_names .'>';
+        $output .= $indent . '<li id="menu-item-' . $item->ID . '"' . $value . $class_names . '>';
 
-        $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
-        $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
-        $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
-        $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
-        $attributes .= ! empty( $args->link_class ) ? ' class="'   . esc_attr( $args->link_class        ) .'"' : '';
-        $attributes .= ! empty( $args->link_class ) ? ' class="'   . esc_attr( $args->link_class        ) .'"' : '';
+        $attributes = !empty($item->attr_title) ? ' title="' . esc_attr($item->attr_title) . '"' : '';
+        $attributes .= !empty($item->target) ? ' target="' . esc_attr($item->target) . '"' : '';
+        $attributes .= !empty($item->xfn) ? ' rel="' . esc_attr($item->xfn) . '"' : '';
+        $attributes .= !empty($item->url) ? ' href="' . esc_attr($item->url) . '"' : '';
+        $attributes .= !empty($args->link_class) ? ' class="' . esc_attr($args->link_class) . '"' : '';
+        $attributes .= !empty($args->link_class) ? ' class="' . esc_attr($args->link_class) . '"' : '';
 
         $item_output = $args->before;
-        $item_output .= '<a'. $attributes .'>';
-        $item_output .= $args->link_before .apply_filters( 'the_title', $item->title, $item->ID );
+        $item_output .= '<a' . $attributes . '>';
+        $item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID);
         $item_output .= $args->link_after;
         $item_output .= '</a>';
         $item_output .= $args->after;
 
-        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
+        $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
+    }
+
+}
+
+class Walker_Comment_Override extends Walker_Comment
+{
+    public function start_el( &$output, $comment, $depth = 0, $args = array(), $id = 0 ) {
+        $depth++;
+        $GLOBALS['comment_depth'] = $depth;
+        $GLOBALS['comment'] = $comment;
+
+        if ( !empty( $args['callback'] ) ) {
+            ob_start();
+            call_user_func( $args['callback'], $comment, $args, $depth );
+            $output .= ob_get_clean();
+            return;
+        }
+
+        if ( ( 'pingback' == $comment->comment_type || 'trackback' == $comment->comment_type ) && $args['short_ping'] ) {
+            ob_start();
+            $this->ping( $comment, $depth, $args );
+            $output .= ob_get_clean();
+        } elseif ( 'html5' === $args['format'] ) {
+            ob_start();
+            $this->html5_comment( $comment, $depth, $args );
+            $output .= ob_get_clean();
+        } else {
+            ob_start();
+            $this->comment( $comment, $depth, $args );
+            $output .= ob_get_clean();
+        }
+    }
+
+    protected function comment( $comment, $depth, $args ) {
+        if ( 'div' == $args['style'] ) {
+            $tag = 'div';
+            $add_below = 'comment';
+        } else {
+            $tag = 'li';
+            $add_below = 'div-comment';
+        }
+        ?>
+        <<?php echo $tag; ?> <?php comment_class( ($this->has_children ? 'parent' : ''). ' comments__item', $comment ); ?> id="comment-<?php comment_ID(); ?>">
+        <?php if ( 'div' != $args['style'] ) : ?>
+            <div id="div-comment-<?php comment_ID(); ?>" class="comment-body comment    ">
+        <?php endif; ?>
+        <div class="comment-author vcard comment__avatar">
+            <?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'], '', '', array('class' => 'image comment__image img-responsive') ); ?>
+        </div>
+        <?php if ( '0' == $comment->comment_approved ) : ?>
+            <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ) ?></em>
+            <br />
+        <?php endif; ?>
+
+        <div class="comment-meta commentmetadata comment__content">
+            <div class="comment__header">
+                <div class="comment__info">
+                    <div class="comment__date"><?php echo get_comment_date( '', $comment ); ?></div>
+                    <div class="comment__name"><?php echo get_comment_author_link( $comment ); ?></div>
+                </div>
+                <?php
+                comment_reply_link( array_merge( $args, array(
+                    'add_below' => $add_below,
+                    'depth'     => $depth,
+                    'max_depth' => $args['max_depth'],
+                    'before'    => '<div class="comment__button">',
+                    'after'     => '</div>'
+                ) ) );
+                ?>
+            </div>
+            <div class="comment__description">
+                <?php comment_text( $comment, array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+            </div>
+        </div>
+
+
+
+        <?php if ( 'div' != $args['style'] ) : ?>
+            </div>
+        <?php endif; ?>
+        <?php
     }
 }
 

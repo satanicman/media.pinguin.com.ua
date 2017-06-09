@@ -1641,7 +1641,7 @@ function get_comment_reply_link( $args = array(), $comment = null, $post = null 
 			$args['add_below'], $comment->comment_ID, $args['respond_id'], $post->ID
 		);
 
-		$link = sprintf( "<a rel='nofollow' class='comment-reply-link' href='%s' onclick='%s' aria-label='%s'>%s</a>",
+		$link = sprintf( "<a rel='nofollow' class='comment-reply-link button button__control' href='%s' onclick='%s' aria-label='%s'><span class='button__text'>%s</span></a>",
 			esc_url( add_query_arg( 'replytocom', $comment->comment_ID, get_permalink( $post->ID ) ) ) . "#" . $args['respond_id'],
 			$onclick,
 			esc_attr( sprintf( $args['reply_to_text'], $comment->comment_author ) ),
@@ -2272,7 +2272,7 @@ function comment_form( $args = array(), $post_id = null ) {
 	 */
 	do_action( 'comment_form_before' );
 	?>
-	<div id="respond" class="comment-respond">
+	<div id="respond" class="comments-form">
 		<?php
 		echo $args['title_reply_before'];
 
@@ -2337,7 +2337,7 @@ function comment_form( $args = array(), $post_id = null ) {
 				endif;
 
 				// Prepare an array of all fields, including the textarea
-				$comment_fields = array( 'comment' => $args['comment_field'] ) + (array) $args['fields'];
+				$comment_fields = (array) $args['fields'] + array( 'comment' => $args['comment_field'] );
 
 				/**
 				 * Filters the comment form fields, including the textarea.
