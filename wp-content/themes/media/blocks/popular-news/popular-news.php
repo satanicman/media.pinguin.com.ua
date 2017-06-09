@@ -30,7 +30,7 @@
                     <h4 class="news-description__title"><?php echo $populars[0]->post_title ?></h4>
                     <p class="news-description__info"><span class="news-description__date"><?php echo date('Y.m.d', strtotime($populars[0]->post_modified)); ?></span><span class="news-description__comments fa fa_icon_comments-o"><?php echo $populars[0]->comment_count; ?></span>
                     </p>
-                    <p class="news-description__text"><?php echo get_the_excerpt($populars[0]); ?></p>
+                    <p class="news-description__text"><?php echo wp_trim_words( strip_tags(get_the_content()), 50, ' (...)' ); ?></p>
                 </div>
             </div>
         </a>
@@ -38,7 +38,7 @@
     <?php if (count($populars) > 1) : ?>
     <div class="popular-news__sub col-lg-6">
         <ul class="popular-news__list">
-            <?php for($i = 1; $i < count($populars); $i++) : ?>
+            <?php for($i = 1; $i < count($populars); $i++) : setup_postdata($populars[$i]); ?>
             <li class="popular-news__item">
                 <a class="link link__control news__link i-bem" data-bem='{"link":{}}' role="link" tabindex="0" href="<?php echo get_post_permalink($populars[$i]->ID); ?>" title="<?php echo $populars[$i]->post_title; ?>">
                     <div class="news news_type_popular news_small">

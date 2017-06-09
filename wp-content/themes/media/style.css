@@ -74,7 +74,7 @@ html {
     -ms-flex-direction: column;
     flex-direction: column;
     background-color: #fff;
-    min-width: 400px
+    min-width: 320px
 }
 
 a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
@@ -2863,8 +2863,7 @@ input[type=search] {
 }
 
 .news__link {
-    display: inline-block;
-    vertical-align: middle;
+    display: block;
     cursor: pointer
 }
 
@@ -2909,7 +2908,8 @@ input[type=search] {
     font-size: 1.5em;
     font-weight: 700;
     line-height: 1.25em;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+	text-transform: uppercase;
 }
 
 .news-description__info {
@@ -2951,7 +2951,8 @@ input[type=search] {
 
 .news-description_size_small .news-description__title {
     font-size: 1em;
-    margin-bottom: 15px
+    margin-bottom: 15px;
+	text-transform: uppercase;
 }
 
 .news-description_size_small .news-description__info {
@@ -3275,12 +3276,21 @@ input[type=search] {
     color: #222626;
 }
 
-.pagination__item:last-of-type,
-.pagination__item:first-of-type {
-    -webkit-flex-grow: 1;
-    -ms-flex-positive: 1;
-    -webkit-box-flex: 1;
-    flex-grow: 1;
+
+@media (max-width: 767px) {
+    .pagination__item:last-of-type,
+    .pagination__item:first-of-type {
+        display: none;
+    }
+}
+@media (min-width: 768px) {
+    .pagination__item:last-of-type,
+    .pagination__item:first-of-type {
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        -webkit-box-flex: 1;
+        flex-grow: 1;
+    }
 }
 
 .pagination__item:first-of-type {
@@ -3331,6 +3341,12 @@ input[type=search] {
 .pagination__item {
     float: left;
     padding: 0 20px;
+}
+
+@media (max-width: 767px) {
+    .pagination__item {
+        padding: 0 5px;
+    }
 }
 
 .pagination__item .pagination__link {
@@ -3401,4 +3417,8 @@ input[type=search] {
 
 .fa_icon_heart:before {
     content: "\f004";
+}
+
+.news-description.news__description img {
+    display: none;
 }

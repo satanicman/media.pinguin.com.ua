@@ -4,7 +4,7 @@
         <div class="main__center-column">
             <?php
                 if(is_search()) {
-
+                    set_query_var( 'list',  $posts);
                 } elseif(is_category()) {
                     set_query_var( 'list',  $posts);
                 }
