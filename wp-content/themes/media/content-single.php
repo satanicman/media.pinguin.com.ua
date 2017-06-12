@@ -6,7 +6,7 @@
                     <img class="image post__image" src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>" title="<?php the_title(); ?>">
                 <?php endif; ?>
                 <h3 class="h h_type_3 post__title"><?php the_title(); ?></h3>
-                <p class="text post__date"><?php echo date('Y.m.d', strtotime($post->post_modified)); ?></p>
+                <p class="text post__date"><?php echo date('Y.m.d', strtotime($post->post_date)); ?></p>
                 <?php echo $post->post_content; ?>
                 <div class="post__bottom">
                     <p class="post-tags">

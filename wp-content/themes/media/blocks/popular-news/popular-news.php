@@ -28,7 +28,7 @@
                 <?php endif; ?>
                 <div class="news-description news__description">
                     <h4 class="news-description__title"><?php echo $populars[0]->post_title ?></h4>
-                    <p class="news-description__info"><span class="news-description__date"><?php echo date('Y.m.d', strtotime($populars[0]->post_modified)); ?></span><span class="news-description__comments fa fa_icon_comments-o"><?php echo $populars[0]->comment_count; ?></span>
+                    <p class="news-description__info"><span class="news-description__date"><?php echo date('Y.m.d', strtotime($populars[0]->post_date)); ?></span><span class="news-description__comments fa fa_icon_comments-o"><?php echo $populars[0]->comment_count; ?></span>
                     </p>
                     <p class="news-description__text"><?php echo wp_trim_words( strip_tags(get_the_content()), 50, ' (...)' ); ?></p>
                 </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="news-description news-description_size_small news__description">
                             <h4 class="news-description__title"><?php echo $populars[$i]->post_title; ?></h4>
-                            <p class="news-description__info"><span class="news-description__date"><?php echo date('Y.m.d', strtotime($populars[$i]->post_modified)); ?></span><span class="news-description__comments fa fa_icon_comments-o"><?php echo $populars[$i]->comment_count; ?></span>
+                            <p class="news-description__info"><span class="news-description__date"><?php echo date('Y.m.d', strtotime($populars[$i]->post_date)); ?></span><span class="news-description__comments fa fa_icon_comments-o"><?php echo $populars[$i]->comment_count; ?></span>
                             </p>
                         </div>
                     </div>
