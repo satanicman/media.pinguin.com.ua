@@ -399,6 +399,18 @@ class Walker_Comment_Override extends Walker_Comment
     }
 }
 
+function setPostViews($postID) {
+    $count_key = 'post_views_count';
+    $count = get_post_meta($postID, $count_key, true);
+    if($count==''){
+        delete_post_meta($postID, $count_key);
+        add_post_meta($postID, $count_key, 1);
+    }else{
+        $count++;
+        update_post_meta($postID, $count_key, $count);
+    }
+}
+
 function get_populars($args = array())
 {
     global $wpdb;
@@ -410,7 +422,7 @@ function get_populars($args = array())
     if(!isset($args['interval']))
         $args['interval'] = 90;
 
-    $sql = "SELECT * FROM " . $wpdb->posts . " WHERE post_type = 'post' AND post_status = 'publish' AND post_date > '" . date('Y-m-d', strtotime("-" . (int)$args['interval'] . " days")) . "' ORDER BY comment_count DESC LIMIT 0 , " . (int)$args['quantity'];
+    $sql = "SELECT * FROM " . $wpdb->posts . " as p LEFT JOIN " . $wpdb->postmeta . " as pm ON pm.post_id = p.ID AND meta_key = 'post_views_count' WHERE post_type = 'post' AND post_status = 'publish' AND meta_value IS NOT NULL ORDER BY meta_value DESC LIMIT 0 , " . (int)$args['quantity'];
     $result = $wpdb->get_results($sql);
 
     return $result;

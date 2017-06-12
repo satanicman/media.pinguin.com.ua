@@ -1,3 +1,4 @@
+<?php setPostViews(get_the_ID()); ?>
 <div class="content__container container">
     <main class="main">
         <div class="main__center-column">
