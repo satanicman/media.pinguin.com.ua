@@ -46,6 +46,7 @@
         </div>
     </div>
 </footer>
+<div class="banner banner__main banner-main" id="banner-main"></div>
 <?php wp_footer(); ?>
 </body>
 </html>
