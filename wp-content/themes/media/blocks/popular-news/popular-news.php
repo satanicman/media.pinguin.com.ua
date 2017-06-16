@@ -18,12 +18,12 @@
                 ?>
                     <div class="news__image">
                         <img class="image img-responsive" src="<?php echo $thumb; ?>" alt="<?php echo $post->post_title; ?>">
-                        <?php
-                            $tags = wp_get_post_tags($populars[0]->ID);
-                            if($tags && count($tags) > 0) :
-                        ?>
-                            <p class="rubric-plate rubric-plate_color_orange"><?php echo $tags['0']->name; ?></p>
-                        <?php endif; ?>
+<!--                        --><?php
+//                            $tags = wp_get_post_tags($populars[0]->ID);
+//                            if($tags && count($tags) > 0) :
+//                        ?>
+<!--                            <p class="rubric-plate rubric-plate_color_orange">--><?php //echo $tags['0']->name; ?><!--</p>-->
+<!--                        --><?php //endif; ?>
                     </div>
                 <?php endif; ?>
                 <div class="news-description news__description">
